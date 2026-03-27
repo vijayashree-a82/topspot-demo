@@ -25,9 +25,9 @@
         <i class="fas fa-times close-btn"></i>
 
         <div class="info">
-          <video class="videoPlayer" controls>
-            <source src="video1.mp4" type="video/mp4">
-          </video>
+          <audio class="audioPlayer" controls>
+            <source src="audio1.mp3" type="audio/mpeg">
+          </audio>
         </div>
 
       </div>
@@ -85,6 +85,35 @@ var popupViews = document.querySelectorAll('.popup-view');
 var popupBtns = document.querySelectorAll('.popup-btn');
 var closeBtns = document.querySelectorAll('.close-btn');
 var videos = document.querySelectorAll('.videoPlayer');
+var audios = document.querySelectorAll('.audioPlayer');
+
+  // Open popup
+popupBtns.forEach((btn, i) => {
+  btn.addEventListener("click", () => {
+    popupViews[i].classList.add("active");
+    audios[i].play();
+  });
+});
+
+// Close popup
+closeBtns.forEach((btn, i) => {
+  btn.addEventListener("click", () => {
+    popupViews[i].classList.remove("active");
+    audios[i].pause();
+    audios[i].currentTime = 0;
+  });
+});
+
+// Close on outside click
+popupViews.forEach((view, i) => {
+  view.addEventListener("click", (e) => {
+    if (e.target === view) {
+      view.classList.remove("active");
+      audios[i].pause();
+      audios[i].currentTime = 0;
+    }
+  });
+});
 
 // Open popup
 popupBtns.forEach((btn, i) => {
