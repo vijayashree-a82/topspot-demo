@@ -308,4 +308,7 @@ body{
   .product:first-child {
       padding-top: 80px;
   }
+  .product .popup-card {
+        width: 100%;
+    }
 }
